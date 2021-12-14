@@ -1,0 +1,6 @@
+Используемые сторонние библиотеки:
+functools
+tkinter
+datetime
+random
+PIL
