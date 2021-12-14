@@ -89,10 +89,6 @@ class sumsTest(unittest.TestCase):
             var[i].set(i)
         self.assertEqual(srballvtoroichasti(var), 55)
 
-    def endpr(self):
-        massiv_rad = [IntVar(0) * 7]
-        self.assertEqual(endprogramm(massiv_rad, 10), None)
-
 
 if __name__ == "__main__":
     unittest.main()
