@@ -88,6 +88,17 @@ class sumsTest(unittest.TestCase):
             Radiobutton(variable=var[i], value=1)
             var[i].set(i)
         self.assertEqual(srballvtoroichasti(var), 55)
+    def test_24(self):
+        self.assertEqual(sravnenie_otvetov([0, -9, 0.46, 2.5, 7, 4, 0, 0, 0, 0, 0, 0], 10), 5)
+
+    def test_25(self):
+        self.assertEqual(sravnenie_otvetov([0, -4, 0.72, 12.5, 0.0, 1.5, 1.25, 25, 25, -2, 5, -6], 1), 11)
+
+    def test_26(self):
+        self.assertEqual(sravnenie_otvetov([0, 4, 0, 0, 0, 5, 0, 5000, 6000, 4, 0.98, 4], 3), 5)
+
+    def test_27(self):
+        self.assertEqual(sravnenie_otvetov([0, 0, 0, 0, 0, 0, 0, 0, 0, -12, 0.1, -1], 7), 3)
 
 
 if __name__ == "__main__":

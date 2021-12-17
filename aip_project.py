@@ -424,8 +424,8 @@ def create_scrollbar():
 
 def docheck(number):
     """
-    Функция проверяет ответы пользоватеоя в первой части с ответами из файла с данными,
-    после чего запускается проверка второй части
+    Функция обрабатывает введенные ответы, после чего запускает их проверку,
+    после получения результата запускается проверка второй части
     :param number: номер варианта
     """
     global strvvoda, reshenie_go, label_time
@@ -433,7 +433,7 @@ def docheck(number):
     reshenie_go = False
     label_time.pack_forget()
     # проверка ответов в первой части
-    vern = 0
+    massiv_otvetov = [0]
     for i in range(1, 11 + 1):
         insertanswer = strvvoda[i].get()
         insertanswer.replace(',', '.')
@@ -443,8 +443,8 @@ def docheck(number):
                 ischislo = False
         if ischislo and insertanswer != '':
             insertanswer = float(insertanswer)
-        if data_var.otvet[number][i] == insertanswer:
-            vern += 1
+        massiv_otvetov.append(insertanswer)
+    vern = sravnenie_otvetov(massiv_otvetov, number)
     docheck2(number, vern)
 
 
@@ -460,6 +460,7 @@ def start_time(number):
     label_time.config(text=d2 - d1)
     label_time.pack(side=LEFT)
     main_window.after(1000, partial(check_time, d2, number))
+    return 'start'
 
 
 def check_time(konec, number):
@@ -484,6 +485,20 @@ def check_time(konec, number):
 
 
 # ФУНКЦИИ ДЛЯ РАСЧЕТА
+def sravnenie_otvetov(otveti, number):
+    """
+    Функция сравнивает ответы пользователя с ответами на задания и подсчитывает количество набранных баллов
+    :param otveti: массив с введенными ответами пользователя
+    :param number: номер варианта
+    :return: количество набранных баллов в первой части
+    """
+    k = 0
+    for i in range(1, 11 + 1):
+        if otveti[i] == data_var.otvet[number][i]:
+            k += 1
+    return k
+
+
 def srballvtoroichasti(massivradiobutton):
     """
         Функция подсчитывает количество баллов, набранных при самооценке пользователем во второй части
